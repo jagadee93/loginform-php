@@ -39,7 +39,7 @@
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            if ($loginPassword == $row["password"]) {
+            if (password_verify($loginPassword, $row["password"])) {
                 echo "<p class='success'>Login successful!</p>";
                 session_start();
                 $_SESSION['user_id'] = $row["id"];

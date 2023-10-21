@@ -13,7 +13,38 @@
     <?php include 'navigation.php'; ?>
     <div class="container">
         <h1>Register</h1>
+        <?php
+        include("db.php");
 
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = $_POST["name"];
+            $email = $_POST["email"];
+            $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+            $address = $_POST["address"];
+            $phone = $_POST["phone"];
+
+            $sql = "SELECT * FROM users WHERE email='$email'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                if ($email == $row["email"]) {
+                    echo "<p class='danger'>User Exists!</p>";
+                }
+            } else {
+                $sql = "INSERT INTO users (name, email, password, address, phone) VALUES ('$name', '$email', '$password', '$address', '$phone')";
+                if ($conn->query($sql) === TRUE) {
+                    echo " <h1 class='success'>Registration successful!<h1>";
+                    header('Location: login.php');
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+            }
+
+            $conn->close();
+        }
+        ?>
         <form action="register.php" class="form__container" method="post">
             <div class="">
                 <label for="name">Name:</label>
@@ -46,29 +77,7 @@
 
     </div>
 
-    <?php
-    include("db.php");
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = $_POST["name"];
-        $email = $_POST["email"];
-        $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-        $address = $_POST["address"];
-        $phone = $_POST["phone"];
-
-        $sql = "INSERT INTO users (name, email, password, address, phone) VALUES ('$name', '$email', '$password', '$address', '$phone')";
-
-        if ($conn->query($sql) === TRUE) {
-            echo " <h1 class='success'>Registration successful!<h1>";
-            header('Location: login.php');
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-    }
-
-    $conn->close();
-
-    ?>
     <script src="./script.js"></script>
 </body>
 
