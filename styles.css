@@ -1,0 +1,327 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100&display=swap");
+
+:root {
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  --sm: 37.5em;
+  --md: 48em;
+  --lg: 64em;
+  --xl: 75em;
+  --green: #5da93c;
+  --bg1: #150a0a;
+  --bg2: #1d1d1d;
+  --bg3: #252525;
+  --light: #fff;
+  --spacing-button-md: 1em;
+  --spacing-button-sm: 0.5em;
+  --spacing-button-lg: 2em;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --header-height: 4.5rem;
+  --text: rgb(15, 15, 15);
+  --text2: rgb(240, 240, 240);
+  --primary: rgb(22, 210, 247);
+  --spacing--sm: 0.2rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin and padding and reset fonts */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  font-size: 16px;
+  min-height: 100vh;
+  width: 100%;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: var(--bg2);
+  color: var(--light);
+  text-align: center;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul[role="list"] {
+  list-style: none;
+}
+.center {
+  text-align: center;
+}
+
+.nav {
+  width: 100%;
+}
+
+/* mobile nav styles  */
+.nav__toggle {
+  z-index: 3;
+  padding: 0;
+  cursor: pointer;
+  height: 3em;
+  width: 3em;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  transition: opacity 250ms ease;
+  background-color: var(--green);
+}
+
+.toggle_container {
+  padding: 1em 0;
+}
+
+.nav__toggle:focus,
+.nav__toggle:hover {
+  opacity: 0.7;
+}
+
+.hamburger {
+  width: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hamburger,
+.hamburger::after,
+.hamburger::before {
+  z-index: 2;
+  content: "";
+  background-color: var(--bg1);
+  display: block;
+  height: 4px;
+}
+
+.hamburger::before {
+  transform: translateY(-7px);
+}
+
+.hamburger::after {
+  transform: translateY(3px);
+}
+
+.open::after {
+  transform: translate(0, -4px) rotate(45deg);
+}
+
+.open::before {
+  transform: translate(0, 0) rotate(-45deg);
+}
+
+.open {
+  height: 0;
+}
+
+.nav {
+  visibility: hidden;
+  height: 0;
+  position: absolute;
+}
+
+.nav--visible {
+  height: auto;
+  visibility: visible;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+  justify-items: center;
+  background-color: var(--bg3);
+}
+
+.form__container {
+  width: 100%;
+  margin: 0 auto;
+  border: 2px solid var(--light);
+  padding: 1em 3em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+input {
+  border: 1px solid var(--light);
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--light);
+  text-shadow: 1px 1px 5px var(--light);
+}
+.nav--visible .secondary {
+  margin-left: 0;
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+header {
+  background-color: var(--bg3);
+  padding: 0.9em 0;
+}
+a {
+  text-decoration: none;
+}
+
+.secondary {
+  margin-left: auto;
+  gap: 2em;
+}
+
+.nav__link {
+  color: var(--green);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  /* added for nav styling */
+  position: relative;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+.nav__button,
+.cta {
+  background-color: var(--green);
+  color: #fff;
+  padding: 0.3em 0.8em;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.nav__button:hover,
+.nav__button:focus,
+.cta:focus,
+.cta:hover {
+  background-color: #45a049;
+}
+
+.font-3 {
+  font-size: 1.4rem;
+}
+
+.mb-1 {
+  margin: 1em 0;
+}
+
+.link {
+  color: var(--green);
+}
+
+.success {
+  color: #ffff00;
+  font-size: 1.5rem;
+}
+
+.danger {
+  color: #ff0000;
+  font-size: 1.5rem;
+}
+@media screen and (min-width: 800px) {
+  .container {
+    width: 80%;
+  }
+  .form__container {
+    width: 60%;
+    padding: 2em 6em;
+  }
+  .toggle_container {
+    padding: 0;
+  }
+  .nav {
+    height: auto;
+    position: relative;
+    visibility: visible;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .nav__list {
+    flex-direction: row;
+  }
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__list {
+    display: flex;
+    gap: 2em;
+    align-items: center;
+  }
+}
